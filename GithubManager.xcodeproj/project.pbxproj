@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A6CD9D642DDACF2C00D188FC /* NavigationTemplateByTriBQ in Frameworks */ = {isa = PBXBuildFile; productRef = A6CD9D632DDACF2C00D188FC /* NavigationTemplateByTriBQ */; };
+		A6CD9D662DDACF2C00D188FC /* DataLayer in Frameworks */ = {isa = PBXBuildFile; productRef = A6CD9D652DDACF2C00D188FC /* DataLayer */; };
+		A6CD9D682DDACF2C00D188FC /* PhoneHelper in Frameworks */ = {isa = PBXBuildFile; productRef = A6CD9D672DDACF2C00D188FC /* PhoneHelper */; };
+		A6CD9D6A2DDACF2C00D188FC /* SwiftUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = A6CD9D692DDACF2C00D188FC /* SwiftUtilities */; };
+		A6CD9D6C2DDACF2C00D188FC /* UnderlyingViewForSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A6CD9D6B2DDACF2C00D188FC /* UnderlyingViewForSwiftUI */; };
+		A6CD9D6E2DDACF2C00D188FC /* ViewExtensionForSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A6CD9D6D2DDACF2C00D188FC /* ViewExtensionForSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A6CD9D252DDAC35300D188FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +61,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6CD9D662DDACF2C00D188FC /* DataLayer in Frameworks */,
+				A6CD9D6E2DDACF2C00D188FC /* ViewExtensionForSwiftUI in Frameworks */,
+				A6CD9D6C2DDACF2C00D188FC /* UnderlyingViewForSwiftUI in Frameworks */,
+				A6CD9D682DDACF2C00D188FC /* PhoneHelper in Frameworks */,
+				A6CD9D642DDACF2C00D188FC /* NavigationTemplateByTriBQ in Frameworks */,
+				A6CD9D6A2DDACF2C00D188FC /* SwiftUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +93,7 @@
 				A6CD9D152DDAC35100D188FC /* GithubManager */,
 				A6CD9D272DDAC35300D188FC /* GithubManagerTests */,
 				A6CD9D312DDAC35300D188FC /* GithubManagerUITests */,
+				A6CD9D622DDACF2C00D188FC /* Frameworks */,
 				A6CD9D142DDAC35100D188FC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +106,13 @@
 				A6CD9D2E2DDAC35300D188FC /* GithubManagerUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A6CD9D622DDACF2C00D188FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +135,12 @@
 			);
 			name = GithubManager;
 			packageProductDependencies = (
+				A6CD9D632DDACF2C00D188FC /* NavigationTemplateByTriBQ */,
+				A6CD9D652DDACF2C00D188FC /* DataLayer */,
+				A6CD9D672DDACF2C00D188FC /* PhoneHelper */,
+				A6CD9D692DDACF2C00D188FC /* SwiftUtilities */,
+				A6CD9D6B2DDACF2C00D188FC /* UnderlyingViewForSwiftUI */,
+				A6CD9D6D2DDACF2C00D188FC /* ViewExtensionForSwiftUI */,
 			);
 			productName = GithubManager;
 			productReference = A6CD9D132DDAC35100D188FC /* GithubManager.app */;
@@ -614,6 +643,39 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A6CD9D632DDACF2C00D188FC /* NavigationTemplateByTriBQ */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6CD9D412DDAC49C00D188FC /* XCRemoteSwiftPackageReference "NavigationTemplateByTriBQ" */;
+			productName = NavigationTemplateByTriBQ;
+		};
+		A6CD9D652DDACF2C00D188FC /* DataLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6CD9D422DDAC4B500D188FC /* XCRemoteSwiftPackageReference "SwiftExtensionByTriBQ" */;
+			productName = DataLayer;
+		};
+		A6CD9D672DDACF2C00D188FC /* PhoneHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6CD9D422DDAC4B500D188FC /* XCRemoteSwiftPackageReference "SwiftExtensionByTriBQ" */;
+			productName = PhoneHelper;
+		};
+		A6CD9D692DDACF2C00D188FC /* SwiftUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6CD9D422DDAC4B500D188FC /* XCRemoteSwiftPackageReference "SwiftExtensionByTriBQ" */;
+			productName = SwiftUtilities;
+		};
+		A6CD9D6B2DDACF2C00D188FC /* UnderlyingViewForSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6CD9D422DDAC4B500D188FC /* XCRemoteSwiftPackageReference "SwiftExtensionByTriBQ" */;
+			productName = UnderlyingViewForSwiftUI;
+		};
+		A6CD9D6D2DDACF2C00D188FC /* ViewExtensionForSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6CD9D422DDAC4B500D188FC /* XCRemoteSwiftPackageReference "SwiftExtensionByTriBQ" */;
+			productName = ViewExtensionForSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A6CD9D0B2DDAC35100D188FC /* Project object */;
 }
