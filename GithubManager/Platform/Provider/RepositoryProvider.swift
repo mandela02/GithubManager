@@ -5,7 +5,7 @@
 //  Created by Tree Bui Quang Tri on 19/5/25.
 //
 
-public struct RepositoryProvider {
+public class RepositoryProvider {
     public init(endpoint: String) {
         self.apiEndpoint = endpoint
     }
