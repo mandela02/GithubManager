@@ -13,6 +13,7 @@ public struct UserDetailModel: Codable {
     let name: String?
     let avatarUrl: String?
     let htmlUrl: String?
+    let blog: String?
     let location: String?
     let followers: Int?
     let following: Int?
@@ -25,6 +26,7 @@ public struct UserDetailModel: Codable {
         case name
         case avatarUrl = "avatar_url"
         case htmlUrl = "html_url"
+        case blog
         case location
         case followers
         case following

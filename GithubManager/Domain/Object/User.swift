@@ -7,20 +7,20 @@
 
 import Foundation
 
-public struct User: Identifiable {
+public struct User: Identifiable, Equatable {
     public init(
-        name: String,
+        login: String,
         avatar: String,
         url: String
     ) {
-        self.name = name
+        self.login = login
         self.avatar = avatar
         self.url = url
     }
     
     public let id: String = UUID().uuidString
     
-    public let name: String
+    public let login: String
     public let avatar: String
     public let url: String
 }
@@ -28,7 +28,7 @@ public struct User: Identifiable {
 extension UserModel {
     public func toObject() -> User {
         User(
-            name: self.login ?? "",
+            login: self.login ?? "",
             avatar: self.avatarURL ?? "",
             url: self.htmlURL ?? ""
         )

@@ -14,7 +14,8 @@ public class UserDetailRepository: BaseRepository<UserDetailModel> {
     ) async throws -> UserDetailModel {
         let data = try await repository.fetchItem(
             path: String(format: Endpoints.user, login),
-            param: [:]
+            param: [:],
+            needAuthToken: false
         )
         return data
     }
