@@ -13,6 +13,7 @@ public struct UserDetail: Identifiable {
         name: String,
         avatar: String,
         htmlUrl: String,
+        blog: String,
         location: String,
         followers: Int,
         following: Int
@@ -24,6 +25,7 @@ public struct UserDetail: Identifiable {
         self.location = location
         self.followers = followers
         self.following = following
+        self.blog = blog
     }
     
     public let id: String = UUID().uuidString
@@ -32,6 +34,7 @@ public struct UserDetail: Identifiable {
     public let name: String
     public let avatar: String
     public let htmlUrl: String
+    public let blog: String
     public let location: String
     public let followers: Int
     public let following: Int
@@ -44,6 +47,7 @@ extension UserDetailModel {
             name: self.name ?? "",
             avatar: self.avatarUrl ?? "",
             htmlUrl: self.htmlUrl ?? "",
+            blog: self.blog ?? "",
             location: self.location ?? "",
             followers: self.followers ?? 0,
             following: self.following ?? 0

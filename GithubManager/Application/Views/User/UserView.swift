@@ -32,12 +32,34 @@ struct UserView: View {
                 userView
                 followView
                     .padding(.horizontal, 50)
+                
+                VStack(
+                    alignment: .leading,
+                    spacing: 20
+                ) {
+                    githubView
+                    blogView
+                }
             }
             .padding(.all, 20)
         }
         .task {
             await viewModel.initState()
         }
+        .environment(\.openURL, OpenURLAction(handler: { url in
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: { success in
+                    if success {
+                        debugPrint("Opened URL \(url) successfully")
+                    } else {
+                        debugPrint("Failed to open URL \(url)")
+                    }
+                })
+            } else {
+                debugPrint("Can't open the URL: \(url)")
+            }
+            return .handled
+        }))
     }
     
     @ViewBuilder
@@ -133,5 +155,61 @@ struct UserView: View {
                 .frame(maxWidth: .infinity)
             }
         }
+    }
+    
+    @ViewBuilder
+    private var blogView: some View {
+        if let user = viewModel.state.user, !user.blog.isEmpty {
+            VStack(
+                alignment: .leading,
+                spacing: 8
+            ) {
+                Text("Blog")
+                    .foregroundStyle(.black)
+                    .font(.system(size: 24))
+                
+                Text(buildBlogAttributedString(of: user))
+                    .foregroundStyle(.black)
+                    .font(.system(size: 18))
+            }
+        }
+    }
+    
+    private func buildBlogAttributedString(of user: UserDetail) -> AttributedString {
+        var url = AttributedString(user.blog)
+        url.link = URL(string: user.blog)
+        url.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        url.foregroundColor = .blue
+        url.underlineStyle = .single
+        url.underlineColor = .blue
+        return url
+    }
+    
+    @ViewBuilder
+    private var githubView: some View {
+        if let user = viewModel.state.user, !user.htmlUrl.isEmpty {
+            VStack(
+                alignment: .leading,
+                spacing: 8
+            ) {
+                Text("Github")
+                    .foregroundStyle(.black)
+                    .font(.system(size: 24))
+                
+                Text(buildHtmlAttributedString(of: user))
+                    .foregroundStyle(.black)
+                    .font(.system(size: 18))
+            }
+        }
+    }
+    
+    private func buildHtmlAttributedString(of user: UserDetail) -> AttributedString {
+        var url = AttributedString(user.htmlUrl)
+        url.link = URL(string: user.htmlUrl)
+        url.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        url.foregroundColor = .blue
+        url.underlineStyle = .single
+        url.underlineColor = .blue
+        return url
     }
 }
