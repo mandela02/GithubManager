@@ -30,8 +30,8 @@ public class GetUsersUseCase {
     
     public func run(input: Input) async throws -> [User] {
         let result = try await usersRepository.getUsers(
-            perPage: input.page,
-            since: input.page * input.perPage
+            perPage: input.perPage,
+            since: (input.page) * input.perPage
         )
         return result.map { $0.toObject() }
     }

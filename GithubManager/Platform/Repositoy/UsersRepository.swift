@@ -18,7 +18,8 @@ public class UsersRepository: BaseRepository<[UserModel]> {
             param: [
                 "per_page": perPage,
                 "since": since
-            ]
+            ],
+            needAuthToken: false
         )
         return data
     }
