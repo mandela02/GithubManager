@@ -26,7 +26,7 @@ public class UsersRepository: BaseRepository<[UserModel]> {
         
         cachedUser = cachedUser + data
         
-        try saveCachedUser(images: cachedUser, fileName: Constants.users)
+        try saveCachedUser(users: cachedUser, fileName: Constants.users)
         
         return data
     }
@@ -37,14 +37,14 @@ public class UsersRepository: BaseRepository<[UserModel]> {
         return try string?.toUserModelArray() ?? []
     }
     
-    private func saveCachedUser(images: [UserModel], fileName: String) throws {
-        let string = images.toJSONString() ?? ""
+    public func saveCachedUser(users: [UserModel], fileName: String) throws {
+        let string = users.toJSONString() ?? ""
         
         return try saveStringToFile(string, fileName: fileName)
     }
     
     
-    private func saveStringToFile(_ string: String, fileName: String) throws {
+    public func saveStringToFile(_ string: String, fileName: String) throws {
         guard let documentDirectory = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
@@ -57,7 +57,7 @@ public class UsersRepository: BaseRepository<[UserModel]> {
         try string.write(to: fileURL, atomically: true, encoding: .utf8)
     }
     
-    private func readStringFromFile(fileName: String) throws -> String? {
+    public func readStringFromFile(fileName: String) throws -> String? {
         guard let documentDirectory = FileManager.default.urls(
             for: .documentDirectory,
             in: .userDomainMask
