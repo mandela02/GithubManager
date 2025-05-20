@@ -21,7 +21,7 @@ class HomeViewModel: ObservableObject {
     @Published
     var state: State
     
-    func initState() async {
+    func loadUsers() async {
         guard let nextPage = state.page else {
             return
         }
@@ -34,8 +34,10 @@ class HomeViewModel: ObservableObject {
             Task { @MainActor in
                 if users.count < 20 {
                     state.page = nil
+                    Settings.isFinish.value = true
                 } else {
                     state.page = nextPage + 1
+                    Settings.nextPage.value = nextPage + 1
                 }
                 
                 state.users += users
@@ -57,7 +59,7 @@ class HomeViewModel: ObservableObject {
             }
 
             if index == state.users.endIndex - 5 {
-                await initState()
+                await loadUsers()
             }
         }
     }
@@ -68,6 +70,6 @@ extension HomeViewModel {
         var loadingStatus: LoadingStatus = .initial
         var users: [User] = []
         
-        var page: Int? = 0
+        var page: Int? = Settings.nextPage.value
     }
 }

@@ -41,7 +41,9 @@ struct HomeView: View {
         .navigationTitle("Github")
         .navigationBarTitleDisplayMode(.large)
         .viewDidLoad {
-            await viewModel.initState()
+            if Settings.nextPage.value == 0 {
+                await viewModel.loadUsers()
+            }
         }
     }
 }
