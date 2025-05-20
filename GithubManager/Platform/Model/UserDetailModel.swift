@@ -7,6 +7,32 @@
 
 // MARK: - Welcome
 public struct UserDetailModel: Codable {
+    public init(
+        id: Int? = nil,
+        login: String? = nil,
+        name: String? = nil,
+        avatarUrl: String? = nil,
+        htmlUrl: String? = nil,
+        blog: String? = nil,
+        location: String? = nil,
+        followers: Int? = nil,
+        following: Int? = nil,
+        publicRepos: Int? = nil,
+        publicGists: Int? = nil
+    ) {
+        self.id = id
+        self.login = login
+        self.name = name
+        self.avatarUrl = avatarUrl
+        self.htmlUrl = htmlUrl
+        self.blog = blog
+        self.location = location
+        self.followers = followers
+        self.following = following
+        self.publicRepos = publicRepos
+        self.publicGists = publicGists
+    }
+    
     let id: Int?
     
     let login: String?
