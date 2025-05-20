@@ -35,29 +35,46 @@ struct WrappedContentNavigator: DynamicProperty {
     init() {}
 }
 
+/// A navigator responsible for handling navigation logic in the app's main content flow.
+/// Manages push and presentable destinations based on user interactions.
 class ContentNavigator: Navigator<ContentNavigator.Pushed, ContentNavigator.Presented> {
+
+    /// The environment instance used to configure dependencies throughout the navigation flow.
+    let environment: Environment
+
+    /// Initializes the `ContentNavigator` with a default GitHub API endpoint.
     override init() {
         self.environment = Environment(endpoint: "api.github.com")
     }
-    
-    let environment: Environment
 
+    /// Full screen presentables handled by this navigator.
     override var fullScreenPresentables: [Presented] {
         []
     }
 
+    /// Modal presentables handled by this navigator.
     override var modalPresentables: [Presented] {
         []
     }
-    
+
+    /// Defines pushable destinations for navigation.
     enum Pushed: Pushable {
+
+        /// Represents a user screen destination with associated user data.
+        case user(user: User)
+
+        /// Identifies the destination uniquely.
+        var id: Pushed { self }
+
+        /// Equatable conformance to ensure navigation state comparison is based on user ID.
         static func == (lhs: ContentNavigator.Pushed, rhs: ContentNavigator.Pushed) -> Bool {
             switch (lhs, rhs) {
             case let (.user(lhsUser), .user(rhsUser)):
                 return lhsUser.id == rhsUser.id
             }
         }
-        
+
+        /// Hashable conformance to support collection use (e.g., in Sets or Dictionaries).
         func hash(into hasher: inout Hasher) {
             switch self {
             case .user(let user):
@@ -65,14 +82,12 @@ class ContentNavigator: Navigator<ContentNavigator.Pushed, ContentNavigator.Pres
                 hasher.combine(user.id)
             }
         }
-        
-        var id: Pushed { self }
-        
-        case user(user: User)
     }
 
+    /// Defines presentable (modal or fullscreen) destinations.
     enum Presented: Presentable {
+
+        /// Returns a unique identifier for the presented view.
         var id: String { UUID().uuidString }
     }
 }
-
