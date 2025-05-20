@@ -42,7 +42,9 @@ struct HomeView: View {
         .navigationBarTitleDisplayMode(.large)
         .viewDidLoad {
             if Settings.nextPage.value == 0 {
-                await viewModel.loadUsers()
+                await viewModel.loadRemoteUser()
+            } else {
+                await viewModel.loadCachedUsers()
             }
         }
     }
