@@ -10,7 +10,7 @@ import Foundation
 extension String {
     /// Converts a JSON string to an array of ImageModel objects
     /// - Returns: Array of ImageModel objects or nil if conversion fails
-    func toImageModelArray() throws -> [UserModel] {
+    func toUserModelArray() throws -> [UserModel] {
         guard let jsonData = self.data(using: .utf8) else {
             print("Failed to convert string to data")
             return []

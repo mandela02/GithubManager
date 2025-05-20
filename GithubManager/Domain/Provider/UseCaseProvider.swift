@@ -24,4 +24,8 @@ public class UseCaseProvider: UseCaseProviderProtocol {
     public func getUsersUseCase() -> GetUsersUseCase {
         GetUsersUseCase(usersRepository: repositoryProvider.usersRepository)
     }
+    
+    public func getCachedUsersUseCase() -> GetCachedUsersUseCase {
+        GetCachedUsersUseCase(usersRepository: repositoryProvider.usersRepository)
+    }
 }

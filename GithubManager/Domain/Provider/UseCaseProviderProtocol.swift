@@ -8,4 +8,5 @@
 public protocol UseCaseProviderProtocol {
     func getUserUseCase() -> GetUserUseCase
     func getUsersUseCase() -> GetUsersUseCase
+    func getCachedUsersUseCase() -> GetCachedUsersUseCase
 }

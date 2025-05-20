@@ -21,6 +21,56 @@ public class UsersRepository: BaseRepository<[UserModel]> {
             ],
             needAuthToken: false
         )
+        
+        var cachedUser = try getCachedUser(fileName: Constants.users)
+        
+        cachedUser = cachedUser + data
+        
+        try saveCachedUser(images: cachedUser, fileName: Constants.users)
+        
         return data
+    }
+    
+    // FIXME: - I'm too lazy to setup a database
+    public func getCachedUser(fileName: String) throws -> [UserModel] {
+        let string = try readStringFromFile(fileName: fileName)
+        return try string?.toUserModelArray() ?? []
+    }
+    
+    private func saveCachedUser(images: [UserModel], fileName: String) throws {
+        let string = images.toJSONString() ?? ""
+        
+        return try saveStringToFile(string, fileName: fileName)
+    }
+    
+    
+    private func saveStringToFile(_ string: String, fileName: String) throws {
+        guard let documentDirectory = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        ).first else {
+            return
+        }
+        
+        let fileURL = documentDirectory.appendingPathComponent(fileName)
+        
+        try string.write(to: fileURL, atomically: true, encoding: .utf8)
+    }
+    
+    private func readStringFromFile(fileName: String) throws -> String? {
+        guard let documentDirectory = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask
+        ).first else {
+            return nil
+        }
+        
+        let fileURL = documentDirectory.appendingPathComponent(fileName)
+        
+        if !FileManager.default.fileExists(atPath: fileURL.path) {
+            try "[]".write(to: fileURL, atomically: true, encoding: .utf8)
+        }
+
+        return try String(contentsOf: fileURL, encoding: .utf8)
     }
 }

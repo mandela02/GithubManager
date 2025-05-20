@@ -9,3 +9,7 @@ public enum Endpoints {
     static let users = "/users"
     static let user = "/users/%@"
 }
+
+public enum Constants {
+    static let users = "GithubUser.txt"
+}

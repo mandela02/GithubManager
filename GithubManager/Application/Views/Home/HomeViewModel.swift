@@ -14,14 +14,33 @@ class HomeViewModel: ObservableObject {
         self.state = State()
         
         self.getUsersUseCase = env.useCaseProvider.getUsersUseCase()
+        self.getCachedUsersUseCase = env.useCaseProvider.getCachedUsersUseCase()
     }
     
     private let getUsersUseCase: GetUsersUseCase
+    private let getCachedUsersUseCase: GetCachedUsersUseCase
     
     @Published
     var state: State
     
-    func loadUsers() async {
+    func loadCachedUsers() async {
+        do {
+            Task { @MainActor in
+                state.loadingStatus = .inProcess
+            }
+            let users = try await getCachedUsersUseCase.run()
+            Task { @MainActor in
+                state.users += users
+                state.loadingStatus = .success
+            }
+        } catch {
+            Task { @MainActor in
+                state.loadingStatus = error.toLoadingStatus
+            }
+        }
+    }
+    
+    func loadRemoteUser() async {
         guard let nextPage = state.page else {
             return
         }
@@ -59,7 +78,7 @@ class HomeViewModel: ObservableObject {
             }
 
             if index == state.users.endIndex - 5 {
-                await loadUsers()
+                await loadRemoteUser()
             }
         }
     }
